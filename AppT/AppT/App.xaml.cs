@@ -1,27 +1,18 @@
 ﻿using Xamarin.Forms;
 using System.Threading.Tasks;
+using System;
+using System.Net.Http;
 
 namespace AppT
 {
     public partial class App : Application
     {        
-        public static yml_catalog Catalog { get; private set; }
+       // public static YmlCatalog Catalog { get; private set; }
         public App()
         {
             InitializeComponent();            
-            MainPage = new MainPage();
-            GetCatolog();            
+            MainPage = new MainPage(new HtppClientService());                     
         }
-
-        private void GetCatolog()
-        {
-            var content = new HttpConext();
-            Task.Run(async () => 
-            { 
-                Catalog = await content.GetContent();
-            }).Wait();           
-        }
-
         protected override void OnStart()
         {
         }
